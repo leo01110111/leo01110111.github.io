@@ -26,6 +26,6 @@ latest_posts:
 
 I'm interested in using intelligent algorithms (deep NNs, RL, search, optimization) to get robots to do cool things like playing games and traversing challenging environments. 
 
-At the Robomechanics Lab, I work on using deep reinforcement learning to teach a robot quadruped to climb steep cliffs like mountain goats.
+At the [Robomechanics Lab](https://www.cmu.edu/me/robomechanicslab/), I work on using deep reinforcement learning to teach a robot quadruped to climb steep cliffs like mountain goats.
 
-Personally, I have made AI algorthms that play games such as Wordle and Tic-Tac-Toe. I'm currently working on using AI to train the smartest sumo bot. 
+Personally, I have made AI algorthms that play games such as Wordle and Tic-Tac-Toe. I'm currently working on using AI to train the smartest [sumo bot](https://www.youtube.com/watch?v=QCqxOzKNFks). 
