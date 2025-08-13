@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Electrical and Computer Engineering Major at Carnegie Mellon University
+subtitle:  <a href='#'>Electrical & Computer Engineering Student at CMU</a>
 
 profile:
   align: right
