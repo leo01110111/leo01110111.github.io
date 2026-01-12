@@ -1,7 +1,7 @@
 ---
 layout: page
-title: project 1
-description: with background image
+title: A Cliff Climbing Quadruped
+description: Can deep RL teach a quadrupedal robot how to climb steep cliffs? 
 img: assets/img/12.jpg
 importance: 1
 category: work
