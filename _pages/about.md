@@ -36,7 +36,7 @@ What guides my interest are systems that can do orderly things even though their
 
 I think of my research in AI to be similar in nature to a computer architect in the 1940s. Just as people like John von Neumann were thinking about the right architecture for general computers, we're figuring out the right learning rule, neural net, data... for general purpose robots. The von Neuman architecture allowed computers to execute any program. We're making neural nets and reward functions to teach robots to write their own programs for any task.
 
-There are four questions we need to answer for general purpose robots:
+There are five questions we need to answer for general purpose robots:
 
 **1. What is the action and observation space of the robot?**
 
