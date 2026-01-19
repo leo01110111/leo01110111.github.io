@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle:  <a href='#'>Electrical & Computer Engineering Student at CMU</a>
+subtitle:  <a href='#'>Electrical & Computer Engineering Student at Carnegie Mellon</a>
 
 profile:
   align: right
@@ -24,9 +24,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hello and welcome!
-
-I'm an ECE student at Carnegie Mellon with the goal of figuring out how we can build the brains of general purpose robots.
+I'm an ECE student at CMU with the goal of figuring out how we can build the brains of general purpose robots.
 
 At the [Robomechanics Lab](https://www.cmu.edu/me/robomechanicslab/), I've worked on using deep reinforcement learning to teach a robot quadruped to climb steep cliffs. I was inspired by the insane agility of mountain goats (you need to see [this](https://www.youtube.com/watch?v=RG9TMn1FJzc)!!) and hope RL can get us closer to robo-goats. 
 
@@ -50,16 +48,7 @@ There are four questions we need to answer for general purpose robots:
 - There's certainly something fundamental about backpropagation and gradient descent. It allows us to use neural nets in any problem in which we have input target pairs. This is basically what learning is, an optimization of loss. From that, we can formulate loss as prediction error: what we expect minus what we see. This is self-supervised learning and is crucial for world model building. However, given a model of the world, the robot needs to learn how to act given a model of the world in order to achieve its goal. This is why we need our robot brains to have a reward system. The robot needs reward in order to adjust its behavior.
 
 4. How do we train the world model and goal?
+- After birth, a baby moutain goat can stand within minutes, walk within hours, and keep up with their mothers on steep cliffs by the end of the day. Evolution has encoded some insane priors in the minds of these animals. I see self-supervised learning as a way to achieve this. With the data collection effort going towards VLAs, I hope we will be able to build foundation models that gives us strong models of the world to learn policies with less samples. We're already seeing this in how dual manipulators only need 50 trajectories to learn a new skill like cutting an apple if its fine tuned on a foundation model.
+After deployment, the foundation model should still be tuned such that it adapts its understanding of the world. 
 
-
-
-
-- The formulation of learning as an optimization puts the burden on what the mind should be optimization for. I think there should be two kinds of optimizations: one before the robot is deployed and one after deployment.
-
-
-
-
-The first optimization is to give the robot a way to learn what valuable and what isn't. 
-
-are world model priors learned through self-supervised learning. A mountain goat can climb cliffs hours after being born. 
-
+- Given a model of the world, how should the robot act? This requires a goal the robot works towards. This is the only thing that should be hard-coded into the system. Observing children, I notice how they always want to attention and affection of their parents. We had to learn how to walk, but we always knew how to cry. I see this as an effective tool for knowledge distillation. Young kids have no idea how the world works and what the right thing to do is, so they want the attention of their elders and see if they approve or not. This also explains why social validation is the strongest motives of young adults. Perhaps we ought to figure out how to build a reward mechanism for social validation in robots. It's how we teach robots after they're deployed. Robots are here to serve humans. Thus, they must act in accordance to our pleasure. Certainly more thinking needs to be done here. What is our intrinsic reward? Energy minimization seems the most feasible as we can easily get it from the robot's current output, but it certainly doesn't tell the robot what to do. 
