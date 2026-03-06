@@ -67,6 +67,11 @@ ninja.data = [{
           description: "What is the math involved in inverse kinematics for a 6-DoF robotic arm? What does it take to build one from scratch?",
           section: "Projects",handler: () => {
               window.location.href = "/projects/Robotic_Arm/";
+            },},{id: "projects-mechanistic-interpretability-for-vla-models",
+          title: 'Mechanistic Interpretability for VLA models',
+          description: "What can we learn about vision language action models from its weights?",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/mech_vla/";
             },},{
         id: 'social-email',
         title: 'email',
