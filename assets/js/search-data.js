@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/resume/";
           },
-        },{id: "post-the-five-questions-of-general-robots",
+        },{id: "post-vibes",
+        
+          title: "Vibes",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/deep-stuff/";
+          
+        },
+      },{id: "post-the-five-questions-of-general-robots",
         
           title: "The Five Questions of General Robots",
         
