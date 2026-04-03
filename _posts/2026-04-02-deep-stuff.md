@@ -25,3 +25,8 @@ Heuristics aren't valuable unless you apply them, which is more difficult than c
 Information comes in coarse grains, that is, they vary in precision and thus the context they assume. The general public on X follows a coarse grain. The Dwarkesh Podcast follows a coarse grain. Make sure you're at the right level. On a similar note, the medium in which you consume information matters. It's not just about the content. 
 
 I like to think that the only true things in this world is math and science. They describe an objective world. However, most of our thoughts are subjective. Some times these subjective thoughts stress me out or make me angry. Remembering that they're not objective has added a lot of lightness in my life.
+
+An example that may resonate easily with Chinese people: 
+- Many Chinese parents expect good grades from their kids so much so that they would stop the child from developing interests that they think won't make money in the future. Growing up in a time of scarcity, the parents falsely believe that getting good grades is a must for a good life. Of course, that is nothing but a heuristic, not an objective fact. With that said, we must have heuristics to live well. All I'm saying is that understanding that they're not objective tends to make the burden lighter.
+
+We like to think in absolutes whereas we should be thinking in terms of probabilities.
