@@ -105,6 +105,13 @@ ninja.data = [{
           window.open("https://www.linkedin.com/in/leo-wang-9672a51a5", "_blank");
         },
       },{
+        id: 'social-x',
+        title: 'X',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://twitter.com/leo01110111", "_blank");
+        },
+      },{
         id: 'social-youtube',
         title: 'YouTube',
         section: 'Socials',
