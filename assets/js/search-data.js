@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/resume/";
           },
-        },{id: "post-vibes",
+        },{id: "post-rethinking-moravec-39-s-paradox",
+        
+          title: "Rethinking Moravec&#39;s Paradox",
+        
+        description: "What&#39;s stopping physical AI is the autoregressive problem.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/moravec/";
+          
+        },
+      },{id: "post-vibes",
         
           title: "Vibes",
         
@@ -49,7 +60,7 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2026/robotics-big-picture/";
+            window.location.href = "/blog/2026/robotics-big-picture-copy/";
           
         },
       },{id: "books-the-godfather",
