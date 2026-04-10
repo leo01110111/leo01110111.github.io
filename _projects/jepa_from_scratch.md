@@ -2,13 +2,12 @@
 layout: page
 title: JEPA from Scratch
 description: My investigtions into models that solve the autoregressive problem.
-img: assets/img/jepa_cover.jpg
+img: assets/img/jepa_cover.png
 importance: 1
 category: 2026
 related_publications: false
 ---
-![How I imagine 
-Yann and Zuck meetings went.](../assets/img/jepa_cover.png)
+<img src="/assets/img/jepa_cover.png" alt="JEPA cover" style="width: 700px; max-width: 100%; height: auto;" />
 
 It seems super odd to me that with all the money going into AI, nobody has innovated on the autoregressive tranformer since it became a thing circa 2020.
 

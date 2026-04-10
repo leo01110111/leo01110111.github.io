@@ -2,7 +2,7 @@
 layout: post
 title: The Five Questions of General Robots
 date: 2026-02-02 14:24:00
-description: This is my vision statement for how I think about general purpose robots.
+description: My vision statement for general purpose robots.
 categories: big-picture, robotics
 ---
 
