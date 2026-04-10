@@ -4,7 +4,7 @@ title: Mechanistic Interpretability for VLA models
 description: What can we learn about vision language action models from its weights?
 img: assets/img/mech_vla_cover.jpg
 importance: 1
-category: work
+category: 2026
 related_publications: false
 ---
 

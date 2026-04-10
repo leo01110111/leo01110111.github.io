@@ -4,7 +4,7 @@ title: Hill Climbing Quadruped
 description: Can deep RL teach a quadrupedal robot how to climb steep cliffs? 
 img: assets/img/quad_climbing_cover.jpg
 importance: 1
-category: work
+category: 2025
 related_publications: false
 ---
 
