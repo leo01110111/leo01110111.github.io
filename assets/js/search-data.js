@@ -41,17 +41,6 @@ ninja.data = [{
             window.location.href = "/blog/2026/moravec/";
           
         },
-      },{id: "post-vibes",
-        
-          title: "Vibes",
-        
-        description: "",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2026/deep-stuff/";
-          
-        },
       },{id: "post-the-five-questions-of-general-robots",
         
           title: "The Five Questions of General Robots",
@@ -89,11 +78,6 @@ ninja.data = [{
           description: "What is the math involved in inverse kinematics for a 6-DoF robotic arm? What does it take to build one from scratch?",
           section: "Projects",handler: () => {
               window.location.href = "/projects/Robotic_Arm/";
-            },},{id: "projects-jepa-from-scratch",
-          title: 'JEPA from Scratch',
-          description: "My investigtions into models that solve the autoregressive problem.",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/jepa_from_scratch/";
             },},{id: "projects-mechanistic-interpretability-for-vla-models",
           title: 'Mechanistic Interpretability for VLA models',
           description: "What can we learn about vision language action models from its weights?",
