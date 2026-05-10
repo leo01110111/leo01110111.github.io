@@ -34,7 +34,7 @@ ninja.data = [{
         
           title: "Rethinking Moravec&#39;s Paradox",
         
-        description: "What&#39;s stopping physical AI is the autoregressive problem.",
+        description: "",
         section: "Posts",
         handler: () => {
           
