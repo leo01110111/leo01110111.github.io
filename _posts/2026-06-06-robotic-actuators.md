@@ -10,6 +10,7 @@ categories: robotics
 Basically all robot learning embodiments use 
 - Brushless DC motors (BLDC) (anything by Unitree, Boston Dynamics, I2T's YAM)
 - URs and Frankas use permanent magnet synchronous motors (PMSM)
+
 This is the scope of the paper. I don't cover dynamixel, hobby servo, or stepper motors which are common in simpler robots. The depth is tuned to be suitable for robot learning practitioners.
 
 ## Contents:
@@ -19,7 +20,7 @@ This is the scope of the paper. I don't cover dynamixel, hobby servo, or stepper
 
 ## Starting from the fundamentals
 
-**All motors can only be controlled by changing the voltage supplied to it***
+**All motors can only be controlled by changing the voltage supplied to it**
 
 All the motors we care about control voltage with Pulse Width Modulation (PWM). Here's an example: we can switch a 24V power supply on and off incredibly fast to simulate any voltage we want. If the supply is on 25% of the time, the motor will operate as if it's supplied with a constant 6V. 
 
@@ -27,7 +28,7 @@ PWM executes arbitrary voltages, but it doesn't know how to control motor speed 
 
 {% include figure.liquid loading="eager" path="assets/img/odrive-s1.webp" class="img-fluid rounded z-depth-1" width="310px" %}
 *The ODrive S1 is the motor driver most homemade robots use.*
-{% include figure.liquid loading="eager" path="assets/img/motor-driver-torque.png" class="img-fluid rounded z-depth-1" %}
+{% include figure.liquid loading="eager" path="assets/img/motor-driver-torque.png" class="img-fluid rounded z-depth-1" width="310px"%}
 *With a motor driver, we now only need to worry about torque that we're sending to the motor driver.*
 
 ## Computing Torque:
@@ -37,8 +38,6 @@ Now we need to figure out how to compute the torque command from whatever the ne
 To my knowledge there's only one paper about learning torque features directly in a [policy](https://arxiv.org/pdf/2203.05194). 
 
 Everyone else has a policy that just learns target joint positions and have either a deterministic equation or a network that maps joint positions to joint torques.
-
-*Rant: In my humble opinion, we as a community need to create end to end policies that thinks in terms of output joint torques and not joint positions because that's what humans can consciously control!! I believe the next step is for a policy to directly override position commands with torque commands when necessary.
 
 ### 1. Learned Network
 
@@ -60,18 +59,23 @@ Implementation Notes:
 
 There are two ways to do PD control. Parallel or Nested.
 
+<div style="margin-left: 2em;" markdown="1">
+
 #### 1. Parallel PD Control
 
 $$\tau_{\text{target}} = K_p (q_{\text{target}} - q_{\text{actual}}) + K_d (\dot{q}_{\text{target}} - \dot{q}_{\text{actual}})$$
 
 - **$$q$$** = Angular Position
 - **$$\dot{q}$$** = Angular Velocity
-- **$$K_p$$** = Proportional gain (acts like a virtual **spring** that pushes harder the further the joint is from the target position)
-- **$$K_d$$** = Derivative gain (acts like a virtual **damper/shock absorber** to stop the motor from overshooting and shaking when it arrives at the target position)
+- **$$K_p$$** = Proportional gain (acts like a virtual spring that pushes harder the further the joint is from the target position)
+- **$$K_d$$** = Derivative gain (acts like a virtual damper/shock absorber to stop the motor from overshooting and shaking when it arrives at the target position)
 
-The computer calculates the position error and the velocity error **simultaneously in parallel**, converts them both into independent virtual torques, and sums them together. This is the exact strategy used by **legged robots (Unitree Go2)** and weaker robotic arms (YAM) because it allows them to act like soft, compliant springs when interacting with the environment.
+The computer calculates the position error and the velocity error simultaneously in parallel, converts them both into independent virtual torques, and sums them together. This is the exact strategy used by legged robots (Unitree Go2) and weaker robotic arms (YAM) because it allows them to act like soft, compliant springs when interacting with the environment.
 
 #### 2. Cascaded (Nested) Control
+
+<div style="margin-left: 2em;" markdown="1">
+
 
 ##### Loop 1: Outer Position Loop
 
@@ -82,19 +86,25 @@ $$\dot{q}_{\text{target}} = K_{p_{\text{pos}}} (q_{\text{target}} - q_{\text{act
 $$\tau_{\text{target}} = K_{p_{\text{vel}}} (\dot{q}_{\text{target}} - \dot{q}_{\text{actual}})$$
 
 - **$$K_{p_{\text{pos}}}$$** = Position Proportional gain (translates distance-to-target into a safe, desired speed target)
-- **$$K_{p_{\text{vel}}}$$** = Velocity Proportional gain (determines how much **torque** to apply to eliminate any error between the desired speed and actual speed)
+- **$$K_{p_{\text{vel}}}$$** = Velocity Proportional gain (determines how much torque to apply to eliminate any error between the desired speed and actual speed)
 
-When you use this type of Position Control, the loops run sequentially. The computer runs the **Position loop** to output a speed target ($$\dot{q}_{\text{target}}$$). This speed target immediately feeds into the **Velocity loop** as its input. The Velocity loop then outputs the final torque target ($$\tau_{\text{target}}$$), which is handed off directly to the FOC controller inside your motor driver. This is the strategy used by **high-precision industrial arms (UR7e, Franka)** for flawless path tracking.
+When you use this type of Position Control, the loops run sequentially. The computer runs the Position loop to output a speed target ($$\dot{q}_{\text{target}}$$). This speed target immediately feeds into the Velocity loop as its input. The Velocity loop then outputs the final torque target ($$\tau_{\text{target}}$$), which is handed off directly to the FOC controller inside your motor driver. This is the strategy used by high-precision industrial arms (UR7e, Franka) for flawless path tracking.
 
-> **Damping vs. velocity-error tracking (same $$K_d$$ term):** the derivative term $$K_d(\dot{q}_{\text{target}} - \dot{q}_{\text{actual}})$$ is pure **damping** when $$\dot{q}_{\text{target}} = 0$$ (setpoint regulation) and **velocity-error tracking** when $$\dot{q}_{\text{target}} \neq 0$$ (trajectory following). Parallel PD on legged robots usually runs with $$\dot{q}_{\text{target}} = 0$$ (damping). The UR cascade runs with $$\dot{q}_{\text{target}} \neq 0$$ from the outer loop, so it actually tracks velocity. Note this means **Mujoco's `<position>` (which is $$\dot{q}_{\text{target}} = 0$$ damping) regulates to a setpoint and does not reproduce how a UR tracks a trajectory** — usually fine for RL since a position policy resends a target every tick.
+</div>
+
+> **Damping vs. velocity-error tracking (same $$K_d$$ term):** the derivative term $$K_d(\dot{q}_{\text{target}} - \dot{q}_{\text{actual}})$$ is pure damping when $$\dot{q}_{\text{target}} = 0$$ (setpoint regulation) and velocity-error tracking when $$\dot{q}_{\text{target}} \neq 0$$ (trajectory following). Parallel PD on legged robots usually runs with $$\dot{q}_{\text{target}} = 0$$ (damping). The UR cascade runs with $$\dot{q}_{\text{target}} \neq 0$$ from the outer loop, so it actually tracks velocity. Note this means Mujoco's `<position>` (which is $$\dot{q}_{\text{target}} = 0$$ damping) regulates to a setpoint and does not reproduce how a UR tracks a trajectory — usually fine for RL since a position policy resends a target every tick.
+
+</div>
 
 ### How to tune PD controllers:
 
-**Gains depend on the controller frequency:** $$K_p$$ and $$K_d$$ are software-defined numbers. If your high-level ROS 2 node runs at **100 Hz**, your gains will have to be completely different than if you are running a tight hardware real-time loop at **1,000 Hz**. 
+**Gains depend on the controller frequency:** $$K_p$$ and $$K_d$$ are software-defined numbers. If your high-level ROS 2 node runs at 100 Hz, your gains will have to be completely different than if you are running a tight hardware real-time loop at 1,000 Hz. 
 - This is why you need to tune the $$K_p$$ and $$K_d$$ both in sim and in the real world.
+
 #### Tuning Method
 
 Before you start, ensure the robot is in a safe position and set all gains to zero ($$K_p = 0$$, $$K_d = 0$$).
+<div style="margin-left: 2em;" markdown="1">
 #### Step 1: Establish the "Spring" ($$K_p$$)
 
 1. Command the joint to perform a small, safe step-change (e.g., oscillating back and forth between $$0^\circ$$ and $$10^\circ$$).
@@ -102,6 +112,7 @@ Before you start, ensure the robot is in a safe position and set all gains to ze
 3. Initially, the motor will be too weak to overcome gravity or internal gear friction. As $$K_p$$ rises, the joint will move toward the target but lag significantly.
 4. Keep increasing $$K_p$$ until the joint reaches the target rapidly, overshoots it, and begins to continuously oscillate or bounce back and forth.
 5. Back $$K_p$$ down by roughly 30% to 50% until you have a stable, slightly springy baseline that doesn't oscillate indefinitely.
+
 #### Step 2: Add the "Damper" ($$K_d$$)
 
 1. With your baseline $$K_p$$ locked in, start increasing $$K_d$$ from zero in very small increments.
@@ -110,22 +121,29 @@ Before you start, ensure the robot is in a safe position and set all gains to ze
 
 ⚠️ **Warning:** If you crank $$K_d$$ too high on physical hardware, the motor will emit a high-frequency buzz or hiss. This happens because the derivative math amplifies tiny, high-frequency electrical noise from the position encoder. If the motor buzzes or gets hot, reduce $$K_d$$ immediately.
 
+</div>
+
 ### For Mujoco Folks:
-- The gains are already tuned for Mujoco Menagerie assets: The default **$$K_p$$ (stiffness)** and **$$K_d$$ (damping)** values inside the `<actuator>` tags. 
+- The gains are already tuned for Mujoco Menagerie assets: The default $$K_p$$ (stiffness) and $$K_d$$ (damping) values inside the `<actuator>` tags. 
 
 ### For Unitree Folks:
 When deploying using `unitree_rl_lab` (which relies on Unitree's Low-Level SDK), the firmware sends a continuous stream of motor commands containing 5 main arguments for each joint: `q` (position), `dq` (velocity), `Kp`, `Kd`, and `tau`.
 
 How the firmware sets these constants depends entirely on your training paradigm:
+
+<div style="margin-left: 2em;" markdown="1">
+
 #### Scenario A: If you trained a Position-Control Policy
-The code **does not automatically choose** these numbers; they are hardcoded into a configuration file (like `config.yaml` or a C++ header) to exactly match the $$K_p$$ and $$K_d$$ values you used in simulation.
+The code does not automatically choose these numbers; they are hardcoded into a configuration file (like `config.yaml` or a C++ header) to exactly match the $$K_p$$ and $$K_d$$ values you used in simulation.
 
 When the policy runs, the firmware sets:
 - `Kp = [Your chosen simulation Kp constants]`
 - `Kd = [Your chosen simulation Kd constants]`
 - `q = [The raw output array from your ONNX/TensorFlow model]`
 - `tau = 0` (The onboard motor controller calculates torque automatically).
+
 #### Scenario B: If you trained a Torque-Control Policy
+
 If you are doing direct torque control, you have to explicitly tell the firmware to _turn off_ its internal PD math so it doesn't fight your neural network. In the `unitree_rl_lab` framework, you (or the deployment script) will explicitly set the constants to zero:
 - `Kp = 0`
 - `Kd = 0`
@@ -133,9 +151,11 @@ If you are doing direct torque control, you have to explicitly tell the firmware
 
 _(Note: In some torque-deployment safety scripts, developers leave a tiny fraction of `Kd` active solely to act as a damping safety-net to prevent the legs from violently over-speeding if the robot is lifted off the ground, but `Kp` remains 0)._
 
+</div>
+
 ### For UR arm folks
 
-When using **`servoJ`**, the gains are already fundamentally tuned by Universal Robots. The parameter `gain=300` that you pass into the function isn't a custom $$K_p$$ or $$K_d$$ value that you have to guess from scratch; it is a high-level multiplier that tells UR's incredibly sophisticated, pre-tuned factory internal loops how aggressively to track your target.
+When using `servoJ`, the gains are already fundamentally tuned by Universal Robots. The parameter `gain=300` that you pass into the function isn't a custom $$K_p$$ or $$K_d$$ value that you have to guess from scratch; it is a high-level multiplier that tells UR's incredibly sophisticated, pre-tuned factory internal loops how aggressively to track your target.
 ##### Parameter Breakdown for `servoJ`
 
 ```python
@@ -204,7 +224,7 @@ Here are all of the field in ```<motor>```:
 - ctrlrange: clamps data.ctrl before actuator force is computed. A command limit.
 - forcerange: clamps the scalar data.actuator_force after
 
-Other notes:
+**Other notes:**
 ```xml
 <compiler autolimits="true"/>
 ```
@@ -214,6 +234,8 @@ Other notes:
 ### Control loops for motors
 
 You can set your control loop to be external to Mujoco, in which case the actuator would just reflect commanded torque. Or, you can set a control loop in Mujoco.
+
+<div style="margin-left: 2em;" markdown="1">
 
 #### Pure torque control of a motor
 
@@ -230,8 +252,12 @@ Presets of `<general>` that close the loop inside Mujoco; you write a target to 
 
 ### The general formula for feedback control
 
-With bias and gain parameters as follows. 
-biasprm = [c, -kp, -kv] 
-gainprm = kp 
+With bias and gain parameters as follows:
+
+- biasprm = [c, -kp, -kv] 
+- gainprm = kp
+
 The formula for data.actuator_force is: 
+
 $$\tau_{actuator}=$$clip(gainprm $$\cdot$$ ctrl + biasprm[0] + biasprm[1] $$\cdot~q$$ + biasprm[2]$$\cdot~\dot{q}$$, forcerange[0], forcerange[1])
+</div>
