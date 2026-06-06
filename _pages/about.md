@@ -26,6 +26,6 @@ latest_posts:
 
 I'm an ECE undergraduate at CMU with the goal of figuring out how we can build the brains of general purpose robots.
 
-At the [Robomechanics Lab](https://www.cmu.edu/me/robomechanicslab/), I've worked on using deep reinforcement learning to teach a robot quadruped to climb steep cliffs. I was inspired by the insane agility of mountain goats and hope RL can get us closer to robo-goats. 
+I'm currently a member of [Max Simchowitz](https://msimchowitz.github.io/)'s lab, focusing on generative control policies and reinforcement learning for robots. 
 
-In my own time, I've been exploring various techniques in AI and robotics through personal [projects](https://leo01110111.github.io/projects/). 
+At the [Robomechanics Lab](https://www.cmu.edu/me/robomechanicslab/), I've worked on using deep reinforcement learning to teach a robot quadruped to climb steep cliffs. I was inspired by the insane agility of mountain goats and hope RL can get us closer to robo-goats. 

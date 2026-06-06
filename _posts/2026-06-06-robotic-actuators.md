@@ -228,7 +228,7 @@ Presets of `<general>` that close the loop inside Mujoco; you write a target to 
 - `<velocity kv>`: `ctrl` is a target velocity, internal law `kv·(ctrl − q̇)`.
     
 
-#### The general formula for feedback control
+### The general formula for feedback control
 
 With bias and gain parameters as follows. 
 biasprm = [c, -kp, -kv] 

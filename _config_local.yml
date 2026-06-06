@@ -1,0 +1,27 @@
+# Local-only overrides for `jekyll serve` (not used by the GitHub Pages build).
+# Pass with: --config _config.yml,_config_local.yml
+cache_dir: .jekyll-cache-local
+exclude:
+  - bin/
+  - CONTRIBUTING.md
+  - CUSTOMIZE.md
+  - Dockerfile
+  - docker-compose.yml
+  - docker-compose-slim.yml
+  - FAQ.md
+  - Gemfile
+  - Gemfile.lock
+  - INSTALL.md
+  - LICENSE
+  - lighthouse_results/
+  - package.json
+  - package-lock.json
+  - _posts/examples/
+  - _projects/example_projects/
+  - _pages/about_einstein.md
+  - purgecss.config.js
+  - README.md
+  - readme_preview/
+  - vendor
+  - _config_local.yml
+  - assets/jupyter/
