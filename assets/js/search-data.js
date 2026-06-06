@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/resume/";
           },
-        },{id: "post-rethinking-moravec-39-s-paradox",
+        },{id: "post-all-about-robotic-actuators",
+        
+          title: "All About Robotic Actuators",
+        
+        description: "From BLDC motors and FOC up through PD control, and how to model actuators in MuJoCo.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/robotic-actuators/";
+          
+        },
+      },{id: "post-rethinking-moravec-39-s-paradox",
         
           title: "Rethinking Moravec&#39;s Paradox",
         
