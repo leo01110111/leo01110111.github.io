@@ -30,7 +30,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/resume/";
           },
-        },{id: "post-all-about-robotic-actuators",
+        },{id: "post-we-39-re-all-artists-now",
+        
+          title: "We&#39;re All Artists Now",
+        
+        description: "The role of humans in the era of AI agents.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/we're-all-artists-now/";
+          
+        },
+      },{id: "post-all-about-robotic-actuators",
         
           title: "All About Robotic Actuators",
         
