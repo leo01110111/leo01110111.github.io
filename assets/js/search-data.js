@@ -41,6 +41,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/we're-all-artists-now/";
           
         },
+      },{id: "post-meditations-on-ai",
+        
+          title: "Meditations on AI",
+        
+        description: "My worth in this era of artificial intelligence.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/ai-meditations/";
+          
+        },
       },{id: "post-all-about-robotic-actuators",
         
           title: "All About Robotic Actuators",
