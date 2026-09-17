@@ -30,11 +30,11 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/resume/";
           },
-        },{id: "post-we-39-re-all-artists-now",
+        },{id: "post-meditations-on-ai",
         
-          title: "We&#39;re All Artists Now",
+          title: "Meditations on AI",
         
-        description: "The role of humans in the era of AI agents.",
+        description: "My worth in this era of artifical intelligence.",
         section: "Posts",
         handler: () => {
           
