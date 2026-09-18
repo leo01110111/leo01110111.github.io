@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle:  <a href='#'>Electrical & Computer Engineering Student at Carnegie Mellon</a>
+subtitle: <em>Electrical & Computer Engineering at Carnegie Mellon</em>
 
 profile:
   align: right
@@ -24,7 +24,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I'm an ECE undergraduate at CMU with the goal of figuring out how we can build the brains of general purpose robots.
+I want to build the intelligence of general purpose robots.
 
 I'm currently a member of [Max Simchowitz](https://msimchowitz.github.io/)'s lab, focusing on dexterous manipulation for robots. 
 
