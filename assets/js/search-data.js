@@ -9,7 +9,14 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-projects",
+  },{id: "nav-publications",
+          title: "publications",
+          description: "papers and reports in reversed chronological order.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "nav-projects",
           title: "projects",
           description: "",
           section: "Navigation",
@@ -79,16 +86,11 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-a-simple-inline-announcement",
-          title: 'A simple inline announcement.',
+            },},{id: "news-my-surf-project-on-teaching-quadrupeds-to-climb-steep-terrain-with-rl-was-featured-in-cmu-news-surf-project-scales-new-heights-in-rescue-robotics",
+          title: 'My SURF project on teaching quadrupeds to climb steep terrain with RL was...',
           description: "",
-          section: "News",},{id: "news-a-long-announcement-with-details",
-          title: 'A long announcement with details',
-          description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_2/";
-            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
-          title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
+          section: "News",},{id: "news-our-paper-adaptation-of-generalist-robot-policies-with-minimal-data-was-accepted-to-the-rl4vla-workshop-at-rss-2026",
+          title: 'Our paper Adaptation of Generalist Robot Policies with Minimal Data was accepted to...',
           description: "",
           section: "News",},{id: "projects-hill-climbing-quadruped",
           title: 'Hill Climbing Quadruped',
