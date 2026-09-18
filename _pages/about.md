@@ -26,6 +26,4 @@ latest_posts:
 
 I want to build the intelligence of general purpose robots.
 
-I'm currently a member of [Max Simchowitz](https://msimchowitz.github.io/)'s lab, focusing on dexterous manipulation for robots. 
-
-At the [Robomechanics Lab](https://www.cmu.edu/me/robomechanicslab/), I've worked on using deep reinforcement learning to teach a robot quadruped to climb steep cliffs. I was inspired by the insane agility of mountain goats and hope RL can get us closer to robo-goats. 
+I'm currently a member of [Max Simchowitz](https://msimchowitz.github.io/)'s lab, focusing on dexterous manipulation.
