@@ -1,115 +1,49 @@
 ---
 ---
 
-@string{aps = {American Physical Society,}}
-
-@book{einstein1920relativity,
-  title={Relativity: the Special and General Theory},
-  author={Einstein, Albert},
-  year={1920},
-  publisher={Methuen & Co Ltd},
-  html={relativity.html}
-}
-
-@book{einstein1956investigations,
+@inproceedings{kowshik2026midas,
+  abbr={RSS},
   bibtex_show={true},
-  title={Investigations on the Theory of the Brownian Movement},
-  author={Einstein, Albert},
-  year={1956},
-  publisher={Courier Corporation},
-  preview={brownian-motion.gif}
+  title={Adaptation of Generalist Robot Policies with Minimal Data},
+  author={Kowshik, Shreyas and Venkataraman, Sreyas and Wang, Leo and Pant, Niharika and Simchowitz, Max and Kumar, Aviral},
+  booktitle={RSS 2026 Workshop on Reinforcement Learning for Vision-Language-Action Models (RL4VLA)},
+  year={2026},
+  month={July},
+  abstract={A central goal of robot learning is to move beyond task-specific human data collection toward robots that improve through autonomous interaction. Yet fully autonomous learning remains difficult with current policies: sparse rewards and weak zero-shot exploration make it unlikely that a robot will discover successful behavior from scratch. We study minimal-data adaptation, a regime in which a pretrained robot policy must learn a new task from as little as one demonstration followed by autonomous online interaction. This setting minimizes task-specific supervision while testing whether pretrained policies provide enough structure to make reinforcement learning tractable. We present midas, an offline-to-online RL framework that first anchors a pretrained VLA to the target task with few-demo behavior cloning, then improves it through value-based online residual RL. Across LIBERO and RoboCasa, midas recovers strong task performance from as little as one demonstration, substantially outperforming baselines and generalizing beyond demonstrated conditions. To the best of our knowledge, this is the first demonstration of reliable robot policy adaptation from a single task demonstration. We further validate midas on bimanual YAM hardware, where it learns effective behaviors with roughly six hours of autonomous interaction.},
+  preview={midas.png},
+  pdf={https://openreview.net/pdf?id=9QCLp0AVhc},
+  selected={true}
 }
 
-@article{einstein1950meaning,
-  abbr={AJP},
+@misc{wang2026quadruped,
+  abbr={CMU},
   bibtex_show={true},
-  title={The meaning of relativity},
-  author={Einstein, Albert and Taub, AH},
-  journal={American Journal of Physics},
-  volume={18},
-  number={6},
-  pages={403--404},
-  year={1950},
-  publisher={American Association of Physics Teachers}
+  title={Quadrupedal Slope Climbing via Deep Reinforcement Learning},
+  author={Wang, Leo},
+  howpublished={Meeting of the Minds 2026, Carnegie Mellon University Undergraduate Research Symposium},
+  year={2026},
+  month={April},
+  additional_info={<em>Meeting of the Minds 2026, Carnegie Mellon University Undergraduate Research Symposium</em>},
+  note={Oral presentation. Mentors: David Ologan, Aaron Johnson (Robomechanics Lab)},
+  abstract={This project investigates the use of reinforcement learning (RL) to enable quadruped robots to climb steep cliffs with inclines exceeding 45°. Inspired by the remarkable agility of mountain goats, this work aims to replicate their dynamic climbing strategies on robotic platforms, with applications in search and rescue, mountainous exploration, and disaster response. The quadrupedal robot is trained in a simulation environment, where it climbs moderate incline challenges with progressively increased difficulty through curriculum learning. Early experiments revealed limitations in learning stability. However, modifications such as removing overly constraining penalties, revising terrain design, and increasing the observation variables of the robot have led to partial success: the policy learns to ascend shallow ridges (20°) and displays glimpses of more dynamic movement. These preliminary results suggest that with task-specific design and training, RL holds strong promise for teaching robots novel and extreme locomotion behaviors like cliff climbing. Future work includes incorporating LiDAR as a sensory modality, incorporating recurrent networks for slope estimation, and improving interpretability of learned policies.},
+  html={https://symposium.foragerone.com/meeting-of-the-minds-2026-pittsburgh/presentations/77834},
+  video={https://www.youtube.com/embed/He9QbrQ6y6c},
+  preview={quad_climbing.png},
+  selected={true}
 }
 
-@article{PhysRev.47.777,
-  abbr={PhysRev},
-  title={Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?},
-  author={Einstein*†, A. and Podolsky*, B. and Rosen*, N.},
-  abstract={In a complete theory there is an element corresponding to each element of reality. A sufficient condition for the reality of a physical quantity is the possibility of predicting it with certainty, without disturbing the system. In quantum mechanics in the case of two physical quantities described by non-commuting operators, the knowledge of one precludes the knowledge of the other. Then either (1) the description of reality given by the wave function in quantum mechanics is not complete or (2) these two quantities cannot have simultaneous reality. Consideration of the problem of making predictions concerning a system on the basis of measurements made on another system that had previously interacted with it leads to the result that if (1) is false then (2) is also false. One is thus led to conclude that the description of reality as given by a wave function is not complete.},
-  journal={Phys. Rev.},
-  location={New Jersey},
-  volume={47},
-  issue={10},
-  pages={777--780},
-  numpages={0},
-  year={1935},
-  month={May},
-  publisher=aps,
-  doi={10.1103/PhysRev.47.777},
-  url={http://link.aps.org/doi/10.1103/PhysRev.47.777},
-  html={https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777},
-  pdf={example_pdf.pdf},
-  altmetric={248277},
-  dimensions={true},
-  google_scholar_id={qyhmnyLat1gC},
-  video={https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ},
-  additional_info={. *More Information* can be [found here](https://github.com/alshedivat/al-folio/)},
-  annotation={* Example use of superscripts<br>† Albert Einstein},
-  selected={true},
-  inspirehep_id = {3255}
-}
-
-@article{einstein1905molekularkinetischen,
-  title={{\"U}ber die von der molekularkinetischen Theorie der W{\"a}rme geforderte Bewegung von in ruhenden Fl{\"u}ssigkeiten suspendierten Teilchen},
-  author={Einstein, A.},
-  journal={Annalen der physik},
-  volume={322},
-  number={8},
-  pages={549--560},
-  year={1905},
-  publisher={Wiley Online Library}
-}
-
-@article{einstein1905movement,
-  abbr={Ann. Phys.},
-  title={Un the movement of small particles suspended in statiunary liquids required by the molecular-kinetic theory 0f heat},
-  author={Einstein, A.},
-  journal={Ann. Phys.},
-  volume={17},
-  pages={549--560},
-  year={1905}
-}
-
-@article{einstein1905electrodynamics,
-  title={On the electrodynamics of moving bodies},
-  author={Einstein, A.},
-  year={1905}
-}
-
-@Article{einstein1905photoelectriceffect,
+@techreport{wang2026steering,
+  abbr={CMU},
   bibtex_show={true},
-  abbr={Ann. Phys.},
-  title="{{\"U}ber einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt}",
-  author={Albert Einstein},
-  abstract={This is the abstract text.},
-  journal={Ann. Phys.},
-  volume={322},
-  number={6},
-  pages={132--148},
-  year={1905},
-  doi={10.1002/andp.19053220607},
-  award={Albert Einstein receveid the **Nobel Prize in Physics** 1921 *for his services to Theoretical Physics, and especially for his discovery of the law of the photoelectric effect*},
-  award_name={Nobel Prize}
-}
-
-@book{przibram1967letters,
-  bibtex_show={true},
-  title={Letters on wave mechanics},
-  author={Einstein, Albert and Schrödinger, Erwin and Planck, Max and Lorentz, Hendrik Antoon and Przibram, Karl},
-  year={1967},
-  publisher={Vision},
-  preview={wave-mechanics.gif},
-  abbr={Vision}
+  title={Steering Vision Language Action Models with Mechanistic Interpretability},
+  author={Wang, Leo and Panda, Ashutosh and Chandra, Varun and Kaimburi, Grace},
+  institution={Carnegie Mellon University},
+  additional_info={<em>Course project report, 11-785 Introduction to Deep Learning, Carnegie Mellon University</em>},
+  note={Presented in front of CMU ML professors and students of 11-785 Introduction to Deep Learning},
+  year={2026},
+  abstract={Vision-Language-Action (VLA) models promise general-purpose robots that can follow language instructions, yet their black-box nature impedes robustness and safety. We apply mechanistic interpretability techniques to SmolVLA, a compact open-source VLA, to establish causal links between neurons and robot behavior. First, we project feedforward layer value vectors into vocabulary space, revealing that semantically meaningful concepts (e.g., speed) are concentrated in later layers (23–29), a right-shifted distribution that contrasts with prior findings in larger models. We then identify specific neurons whose top tokens robustly encode "fast" and "slow" and design both single-neuron and multi-neuron cluster steering interventions. Steering is performed by clamping selected neuron activations at inference time. We evaluate two experimental sweeps on the LIBERO benchmark: a lean sweep of single-neuron interventions, and a cluster sweep using top-5 semantically aligned neurons across α ∈ {2, 5, 10}. Single-neuron steering is ineffective at α=10, performing no better than random injection on end-effector speed. Cluster steering on Task 0 consistently outperforms matched random injection but remains below the unsteered baseline, suggesting that per-step activation clamping introduces noise that partially disrupts the policy. On a second task (Task 1), cluster steering at α=5 achieves a ∼6% speed increase over both the unsteered baseline and random injection (Cohen's d ≈ +0.3), providing the first clean positive signal in our sweep. The effect is non-monotonic in α: it peaks near α=5 and inverts above α=10, consistent with polysemantic value vectors whose non-speed content dominates at high amplitudes. Our work provides a counter-narrative for interpreting and steering smaller VLAs, showing both where FFN interpretability techniques succeed and where they are limited by model scale.},
+  pdf={mech_vla.pdf},
+  video={https://www.youtube.com/embed/dcu3Xmeun0s},
+  preview={mech_vla.png},
+  selected={true}
 }

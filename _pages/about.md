@@ -14,7 +14,7 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 
 announcements:
-  enabled: false # includes a list of news items
+  enabled: true # includes a list of news items
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
   limit: 5 # leave blank to include all the news in the `_news` folder
 
@@ -26,6 +26,6 @@ latest_posts:
 
 I'm an ECE undergraduate at CMU with the goal of figuring out how we can build the brains of general purpose robots.
 
-I'm currently a member of [Max Simchowitz](https://msimchowitz.github.io/)'s lab, focusing on generative control policies and reinforcement learning for robots. 
+I'm currently a member of [Max Simchowitz](https://msimchowitz.github.io/)'s lab, focusing on dexterous manipulation for robots. 
 
 At the [Robomechanics Lab](https://www.cmu.edu/me/robomechanicslab/), I've worked on using deep reinforcement learning to teach a robot quadruped to climb steep cliffs. I was inspired by the insane agility of mountain goats and hope RL can get us closer to robo-goats. 
