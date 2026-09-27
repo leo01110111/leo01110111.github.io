@@ -37,11 +37,11 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/resume/";
           },
-        },{id: "post-meditations-on-ai",
+        },{id: "post-what-the-machine-can-39-t-fill-in",
         
-          title: "Meditations on AI",
+          title: "What the Machine Can&#39;t Fill In",
         
-        description: "My worth in this era of artificial intelligence.",
+        description: "",
         section: "Posts",
         handler: () => {
           
