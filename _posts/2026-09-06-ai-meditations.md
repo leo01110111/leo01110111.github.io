@@ -1,8 +1,7 @@
 ---
 layout: post
-title: Meditations on AI
+title: What the Machine Can't Fill In
 date: 2026-09-06 14:24:00
-description: My worth in this era of artificial intelligence.
 categories: opinion
 ---
 ## What it means to be a skilled agentic engineer
