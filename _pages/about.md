@@ -29,3 +29,5 @@ I want to build the intelligence of general purpose robots.
 I'm currently a member of [Max Simchowitz](https://msimchowitz.github.io/)'s lab, focusing on dexterous manipulation.
 
 Previously I worked on reinforcement learning for quadrupeds to climb hills, mentored by Prof. Aaron Johnson at the [Robomechanics Lab](https://www.cmu.edu/me/robomechanicslab/). I was inspired by the insane agility of mountain goats and hope RL can get us closer to robo-goats.
+
+My favorite book: [*Surely You're Joking, Mr. Feynman!*](https://www.softouch.on.ca/kb/data/Surely%20You're%20Joking,%20Mr.%20Feynman!.pdf)
