@@ -1,0 +1,53 @@
+---
+layout: default
+---
+{% assign entries = site.log | sort: 'date' | reverse %}
+<div class="post log">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-description">
+      {{ page.description }}
+      <a href="{{ '/log/feed.xml' | relative_url }}" title="RSS feed"><i class="fa-solid fa-square-rss"></i></a>
+    </p>
+  </header>
+
+  {% if entries.size > 0 %}
+    <div class="log-filters" role="group" aria-label="filter entries">
+      <button class="log-filter active" data-filter="all">all</button>
+      <button class="log-filter" data-filter="progress"><i class="fa-solid fa-hammer"></i> progress</button>
+      <button class="log-filter" data-filter="take"><i class="fa-solid fa-comment"></i> takes</button>
+      <button class="log-filter" data-filter="idea"><i class="fa-solid fa-lightbulb"></i> ideas</button>
+    </div>
+
+    <div class="log-feed">
+      {% assign current_month = '' %}
+      {% for entry in entries %}
+        {% assign month = entry.date | date: '%B %Y' %}
+        {% if month != current_month %}
+          <h2 class="log-month">{{ month | downcase }}</h2>
+          {% assign current_month = month %}
+        {% endif %}
+        {% include log_entry.liquid entry=entry %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Nothing logged yet.</p>
+  {% endif %}
+</div>
+
+<script>
+  document.querySelectorAll('.log-filter').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.log-filter').forEach((b) => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('.log-entry').forEach((e) => {
+        e.hidden = f !== 'all' && e.dataset.kind !== f;
+      });
+      document.querySelectorAll('.log-month').forEach((h) => {
+        let n = h.nextElementSibling, any = false;
+        while (n && !n.classList.contains('log-month')) { if (!n.hidden) any = true; n = n.nextElementSibling; }
+        h.hidden = !any;
+      });
+    });
+  });
+</script>

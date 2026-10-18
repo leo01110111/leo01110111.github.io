@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+# CONTRACT
+# Input:  entry text as arguments (markdown), or none to write it in $EDITOR.
+#         -k progress|take|idea  kind (optional; untagged entries show as plain notes)
+#         -t a,b,c               tags (optional)
+#         -i path                image or video to attach (optional). Images are copied as-is;
+#                                videos (mp4/mov/webm/mkv/avi) are re-encoded by ffmpeg to H.264 mp4,
+#                                max 1280 px wide, so a 1-minute clip is roughly 5-15 MB.
+#         -l                     attach the newest image/video in ~/Pictures, ~/Videos, ~/Downloads,
+#                                ~/Desktop (same as -i last); shows the file and asks before using it
+#         -p                     commit and push to origin/main right away (deploys the site)
+# Output: _log/YYYY-MM-DD-HHMMSS.md with front matter {date (local time with UTC offset),
+#         kind, tags} and the text as body. Media lands at assets/img/log/<entry-name>.<ext> (videos always .mp4,
+#         embedded as a muted, looping <video> with controls). GitHub rejects files over 100 MB,
+#         so videos over 95 MB after encoding are refused.
+# Install: symlinked to ~/.local/bin/elog, so it runs from any directory; relative media paths
+#         resolve against the directory you run it from.
+# Consumer: Jekyll `log` collection (_config.yml) -> /log/ feed, /log/<entry-name>/ permalink,
+#         /log/feed.xml RSS. Only date, kind, tags and body are read.
+# Reference output: any file in _log/.
+set -euo pipefail
+
+usage() { sed -n '3,11p' "$(readlink -f "$0")" | sed 's/^# \{0,1\}//'; exit 1; }
+
+kind="" tags="" image="" push=0
+while getopts "k:t:i:lph" opt; do
+  case $opt in
+    k) kind=$OPTARG ;;
+    t) tags=$OPTARG ;;
+    i) image=$OPTARG ;;
+    l) image=last ;;
+    p) push=1 ;;
+    *) usage ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+case $kind in ""|progress|take|idea) ;; *) echo "kind must be progress, take, or idea" >&2; exit 1 ;; esac
+
+root=$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)
+name=$(date +%Y-%m-%d-%H%M%S)
+file="$root/_log/$name.md"
+
+body="$*"
+if [ -z "$body" ]; then
+  tmp=$(mktemp --suffix=.md)
+  "${EDITOR:-nano}" "$tmp"
+  body=$(cat "$tmp"); rm -f "$tmp"
+fi
+[ -z "${body//[[:space:]]/}" ] && { echo "empty entry, nothing written" >&2; exit 1; }
+
+if [ "$image" = "last" ]; then
+  image=$(find ~/Pictures ~/Videos ~/Downloads ~/Desktop -maxdepth 3 -type f \
+    \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.gif' -o -iname '*.webp' \
+       -o -iname '*.mp4' -o -iname '*.mov' -o -iname '*.webm' -o -iname '*.mkv' -o -iname '*.avi' -o -iname '*.m4v' \) \
+    -printf '%T@\t%p\n' 2>/dev/null | sort -rn | sed -n '1s/^[^\t]*\t//p')
+  [ -n "$image" ] || { echo "no recent image or video found" >&2; exit 1; }
+  echo "latest: ${image/#$HOME/\~} ($(date -r "$image" '+%b %-d %H:%M'))"
+  if [ -t 0 ]; then
+    read -r -p "attach it? [Y/n] " ans
+    case $ans in [nN]*) echo "cancelled" >&2; exit 1 ;; esac
+  fi
+fi
+
+media=""
+if [ -n "$image" ]; then
+  [ -f "$image" ] || { echo "no such file: $image" >&2; exit 1; }
+  mkdir -p "$root/assets/img/log"
+  ext=$(echo "${image##*.}" | tr '[:upper:]' '[:lower:]')
+  case $ext in
+    mp4|mov|webm|mkv|avi|m4v)
+      media="assets/img/log/$name.mp4"
+      echo "encoding video..."
+      ffmpeg -loglevel error -y -i "$image" -vf "scale='min(1280,iw)':-2" -c:v libx264 -crf 28 \
+        -preset medium -pix_fmt yuv420p -c:a aac -b:a 96k -movflags +faststart "$root/$media"
+      mb=$(( $(stat -c %s "$root/$media") / 1048576 ))
+      if [ "$mb" -gt 95 ]; then
+        rm -f "$root/$media"
+        echo "video is ${mb} MB after encoding, over GitHub's limit; trim it or post a YouTube link" >&2
+        exit 1
+      fi
+      echo "video: ${mb} MB"
+      body="$body"$'\n\n'"<video src=\"/$media\" controls muted loop playsinline preload=\"metadata\"></video>"
+      ;;
+    *)
+      media="assets/img/log/$name.$ext"
+      cp "$image" "$root/$media"
+      body="$body"$'\n\n'"![](/$media)"
+      ;;
+  esac
+fi
+
+{
+  echo "---"
+  echo "date: $(date '+%Y-%m-%d %H:%M:%S %z')"
+  [ -n "$kind" ] && echo "kind: $kind"
+  [ -n "$tags" ] && echo "tags: [${tags//,/, }]"
+  echo "---"
+  echo
+  echo "$body"
+} > "$file"
+echo "wrote ${file#$root/}"
+
+if [ $push -eq 1 ]; then
+  git -C "$root" add "_log/$name.md"
+  [ -n "$media" ] && git -C "$root" add "$media"
+  git -C "$root" commit -q -m "log: $(echo "$body" | head -1 | cut -c1-60)"
+  git -C "$root" push -q
+  echo "pushed; live in a few minutes at https://leo01110111.github.io/log/"
+fi
