@@ -30,6 +30,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/blog/";
           },
+        },{id: "nav-engineering-log",
+          title: "engineering log",
+          description: "small progress, half-baked takes, incomplete ideas.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/log/";
+          },
         },{id: "nav-resume",
           title: "resume",
           description: "",
@@ -86,6 +93,16 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
+            },},{id: "log-025228",
+          title: '025228',
+          description: "",
+          section: "Log",handler: () => {
+              window.location.href = "/log/2026-10-18-025228/";
+            },},{id: "log-031037",
+          title: '031037',
+          description: "",
+          section: "Log",handler: () => {
+              window.location.href = "/log/2026-10-18-031037/";
             },},{id: "news-my-surf-project-on-teaching-quadrupeds-to-climb-steep-terrain-with-rl-was-featured-in-cmu-news-surf-project-scales-new-heights-in-rescue-robotics",
           title: 'My SURF project on teaching quadrupeds to climb steep terrain with RL was...',
           description: "",
