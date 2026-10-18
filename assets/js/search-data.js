@@ -103,6 +103,11 @@ ninja.data = [{
           description: "",
           section: "Log",handler: () => {
               window.location.href = "/log/2026-10-18-031037/";
+            },},{id: "log-123342",
+          title: '123342',
+          description: "",
+          section: "Log",handler: () => {
+              window.location.href = "/log/2026-10-18-123342/";
             },},{id: "news-my-surf-project-on-teaching-quadrupeds-to-climb-steep-terrain-with-rl-was-featured-in-cmu-news-surf-project-scales-new-heights-in-rescue-robotics",
           title: 'My SURF project on teaching quadrupeds to climb steep terrain with RL was...',
           description: "",
