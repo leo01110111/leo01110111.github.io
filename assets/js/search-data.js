@@ -25,17 +25,10 @@ ninja.data = [{
           },
         },{id: "nav-blog",
           title: "blog",
-          description: "",
+          description: "small progress, half-baked takes, incomplete ideas, and occasionally essays.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/blog/";
-          },
-        },{id: "nav-engineering-log",
-          title: "engineering log",
-          description: "small progress, half-baked takes, incomplete ideas.",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/log/";
           },
         },{id: "nav-resume",
           title: "resume",
