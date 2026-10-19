@@ -1,8 +1,6 @@
 ---
-layout: log
-title: engineering log
+layout: redirect
 permalink: /log/
-description: small progress, half-baked takes, incomplete ideas.
-nav: true
-nav_order: 4
+redirect_url: /blog/
+sitemap: false
 ---

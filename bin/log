@@ -6,28 +6,32 @@
 #         -i path                image or video to attach (optional). Images are copied as-is;
 #                                videos (mp4/mov/webm/mkv/avi) are re-encoded by ffmpeg to H.264 mp4,
 #                                max 1280 px wide, so a 1-minute clip is roughly 5-15 MB.
+#         -y url                 embed a YouTube video (youtube.com/watch, youtu.be, shorts, live or
+#                                embed links; a t= start time is kept). Repeatable; goes after any -i media.
 #         -l                     attach the newest image/video in ~/Pictures, ~/Videos, ~/Downloads,
 #                                ~/Desktop (same as -i last); shows the file and asks before using it
 #         -p                     commit and push to origin/main right away (deploys the site)
 # Output: _log/YYYY-MM-DD-HHMMSS.md with front matter {date (local time with UTC offset),
 #         kind, tags} and the text as body. Media lands at assets/img/log/<entry-name>.<ext> (videos always .mp4,
-#         embedded as a muted, looping <video> with controls). GitHub rejects files over 100 MB,
+#         embedded as a muted, looping <video> with controls). YouTube links become a 16:9
+#         <iframe class="log-yt"> pointing at youtube.com/embed/<id>. GitHub rejects files over 100 MB,
 #         so videos over 95 MB after encoding are refused.
 # Install: symlinked to ~/.local/bin/elog, so it runs from any directory; relative media paths
 #         resolve against the directory you run it from.
-# Consumer: Jekyll `log` collection (_config.yml) -> /log/ feed, /log/<entry-name>/ permalink,
+# Consumer: Jekyll `log` collection (_config.yml) -> /blog/ feed (merged with _posts essays), /log/<entry-name>/ permalink,
 #         /log/feed.xml RSS. Only date, kind, tags and body are read.
 # Reference output: any file in _log/.
 set -euo pipefail
 
-usage() { sed -n '3,11p' "$(readlink -f "$0")" | sed 's/^# \{0,1\}//'; exit 1; }
+usage() { sed -n '3,13p' "$(readlink -f "$0")" | sed 's/^# \{0,1\}//'; exit 1; }
 
-kind="" tags="" image="" push=0
-while getopts "k:t:i:lph" opt; do
+kind="" tags="" image="" push=0 yt=()
+while getopts "k:t:i:y:lph" opt; do
   case $opt in
     k) kind=$OPTARG ;;
     t) tags=$OPTARG ;;
     i) image=$OPTARG ;;
+    y) yt+=("$OPTARG") ;;
     l) image=last ;;
     p) push=1 ;;
     *) usage ;;
@@ -76,7 +80,7 @@ if [ -n "$image" ]; then
       mb=$(( $(stat -c %s "$root/$media") / 1048576 ))
       if [ "$mb" -gt 95 ]; then
         rm -f "$root/$media"
-        echo "video is ${mb} MB after encoding, over GitHub's limit; trim it or post a YouTube link" >&2
+        echo "video is ${mb} MB after encoding, over GitHub's limit; trim it or upload it to YouTube and use -y" >&2
         exit 1
       fi
       echo "video: ${mb} MB"
@@ -89,6 +93,19 @@ if [ -n "$image" ]; then
       ;;
   esac
 fi
+
+for url in "${yt[@]}"; do
+  id=$(echo "$url" | sed -nE 's#.*(youtu\.be/|[?&]v=|/(shorts|live|embed)/)([A-Za-z0-9_-]{11}).*#\3#p')
+  [ -n "$id" ] || { echo "not a YouTube link: $url" >&2; exit 1; }
+  t=$(echo "$url" | sed -nE 's#.*[?&](t|start)=([0-9hms]+).*#\2#p')
+  start=""
+  if [ -n "$t" ]; then
+    [[ $t =~ ^(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s?)?$ ]] || { echo "bad start time: $t" >&2; exit 1; }
+    secs=$(( 10#${BASH_REMATCH[2]:-0} * 3600 + 10#${BASH_REMATCH[4]:-0} * 60 + 10#${BASH_REMATCH[6]:-0} ))
+    start="?start=$secs"
+  fi
+  body="$body"$'\n\n'"<iframe class=\"log-yt\" src=\"https://www.youtube.com/embed/$id$start\" title=\"YouTube video\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen loading=\"lazy\"></iframe>"
+done
 
 {
   echo "---"
@@ -106,5 +123,5 @@ if [ $push -eq 1 ]; then
   [ -n "$media" ] && git -C "$root" add "$media"
   git -C "$root" commit -q -m "log: $(echo "$body" | head -1 | cut -c1-60)"
   git -C "$root" push -q
-  echo "pushed; live in a few minutes at https://leo01110111.github.io/log/"
+  echo "pushed; live in a few minutes at https://leo01110111.github.io/blog/"
 fi

@@ -1,0 +1,10 @@
+{% assign e = include.entry %}
+{% assign read_time = e.content | number_of_words | divided_by: 180 | plus: 1 %}
+<article class="log-entry log-essay" data-kind="essay">
+  <div class="log-meta">
+    <span class="log-kind log-kind-essay"><i class="fa-solid fa-feather"></i> essay</span>
+    <span class="log-date">{{ e.date | date: '%b %-d, %Y' }} &middot; {{ read_time }} min read</span>
+  </div>
+  <h3 class="log-essay-title"><a href="{{ e.url | relative_url }}">{{ e.title }}</a></h3>
+  {% if e.description %}<p class="log-essay-desc">{{ e.description }}</p>{% endif %}
+</article>
