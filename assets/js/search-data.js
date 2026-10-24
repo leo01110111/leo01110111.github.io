@@ -37,18 +37,7 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/resume/";
           },
-        },{id: "post-can-astra-zero-shot-dexterous-manipulation",
-        
-          title: "Can Astra Zero-Shot Dexterous Manipulation?",
-        
-        description: "GPT 6 Astra attempts DexVerse&#39;s long-horizon coffee making task with a UR10e and Wuji hands.",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2026/astra-makecoffee/";
-          
-        },
-      },{id: "post-what-the-machine-can-39-t-fill-in",
+        },{id: "post-what-the-machine-can-39-t-fill-in",
         
           title: "What the Machine Can&#39;t Fill In",
         
@@ -112,6 +101,11 @@ ninja.data = [{
           description: "",
           section: "Log",handler: () => {
               window.location.href = "/log/2026-10-18-123342/";
+            },},{id: "log-210840",
+          title: '210840',
+          description: "",
+          section: "Log",handler: () => {
+              window.location.href = "/log/2026-10-23-210840/";
             },},{id: "news-my-surf-project-on-teaching-quadrupeds-to-climb-steep-terrain-with-rl-was-featured-in-cmu-news-surf-project-scales-new-heights-in-rescue-robotics",
           title: 'My SURF project on teaching quadrupeds to climb steep terrain with RL was...',
           description: "",
