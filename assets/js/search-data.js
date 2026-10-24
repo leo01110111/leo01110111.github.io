@@ -25,7 +25,7 @@ ninja.data = [{
           },
         },{id: "nav-blog",
           title: "blog",
-          description: "small progress, half-baked takes, incomplete ideas, and occasionally essays.",
+          description: "small progress, half-baked takes, incomplete ideas, and occasional essays.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/blog/";
@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/resume/";
           },
-        },{id: "post-what-the-machine-can-39-t-fill-in",
+        },{id: "post-can-astra-zero-shot-dexterous-manipulation",
+        
+          title: "Can Astra Zero-Shot Dexterous Manipulation?",
+        
+        description: "GPT 6 Astra attempts DexVerse&#39;s long-horizon coffee making task with a UR10e and Wuji hands.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/astra-makecoffee/";
+          
+        },
+      },{id: "post-what-the-machine-can-39-t-fill-in",
         
           title: "What the Machine Can&#39;t Fill In",
         
