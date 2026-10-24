@@ -25,7 +25,7 @@ ninja.data = [{
           },
         },{id: "nav-blog",
           title: "blog",
-          description: "small progress, half-baked takes, incomplete ideas, and occasionally essays.",
+          description: "small progress, half-baked takes, incomplete ideas, and occasional essays.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/blog/";
