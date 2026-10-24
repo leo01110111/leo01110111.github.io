@@ -1,0 +1,21 @@
+{% assign e = include.entry %}
+{% assign read_time = e.content | strip_html | number_of_words | divided_by: 180 | plus: 1 %}
+{% case e.kind %}
+  {% when 'progress' %}{% assign icon = 'fa-solid fa-hammer' %}
+  {% when 'take' %}{% assign icon = 'fa-solid fa-comment' %}
+  {% when 'idea' %}{% assign icon = 'fa-solid fa-lightbulb' %}
+  {% else %}{% assign icon = 'fa-solid fa-circle' %}
+{% endcase %}
+<article class="log-entry log-essay" id="{{ e.slug }}" data-kind="{{ e.kind | default: 'note' }}">
+  <div class="log-meta">
+    {% if e.kind %}<span class="log-kind log-kind-{{ e.kind }}"><i class="{{ icon }}"></i> {{ e.kind }}</span>{% endif %}
+    <span class="log-date">{{ e.date | date: '%b %-d, %Y' }} &middot; {{ read_time }} min read</span>
+  </div>
+  {% if e.title and e.title != e.slug %}
+    <h3 class="log-essay-title"><a href="{{ e.url | relative_url }}">{{ e.title }}</a></h3>
+  {% endif %}
+  <p class="log-essay-desc">
+    {{ e.description | default: e.content | strip_html | truncatewords: 40 }}
+    <a href="{{ e.url | relative_url }}">read more &rarr;</a>
+  </p>
+</article>

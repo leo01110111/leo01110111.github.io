@@ -31,7 +31,12 @@ layout: default
         {% if entry.collection == 'posts' %}
           {% include log_essay.liquid entry=entry %}
         {% else %}
-          {% include log_entry.liquid entry=entry %}
+          {% assign words = entry.content | strip_html | number_of_words %}
+          {% if words > 100 %}
+            {% include log_compact.liquid entry=entry %}
+          {% else %}
+            {% include log_entry.liquid entry=entry %}
+          {% endif %}
         {% endif %}
       {% endfor %}
     </div>

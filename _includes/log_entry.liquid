@@ -10,6 +10,7 @@
     {% if e.kind %}<span class="log-kind log-kind-{{ e.kind }}"><i class="{{ icon }}"></i> {{ e.kind }}</span>{% endif %}
     <a class="log-date" href="{{ e.url | relative_url }}" title="permalink">{{ e.date | date: '%b %-d, %Y' }}</a>
   </div>
+  {% if e.title and e.title != e.slug %}<h3 class="log-essay-title">{{ e.title }}</h3>{% endif %}
   <div class="log-body">{{ e.content | emojify }}</div>
   {% if e.tags.size > 0 %}
     <div class="log-tags">
