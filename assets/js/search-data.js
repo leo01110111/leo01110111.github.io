@@ -112,7 +112,12 @@ ninja.data = [{
           section: "News",},{id: "news-our-paper-adaptation-of-generalist-robot-policies-with-minimal-data-was-accepted-to-the-rl4vla-workshop-at-rss-2026",
           title: 'Our paper Adaptation of Generalist Robot Policies with Minimal Data was accepted to...',
           description: "",
-          section: "News",},{id: "projects-hill-climbing-quadruped",
+          section: "News",},{id: "projects-bimanual-ur7e-teleoperation",
+          title: 'Bimanual UR7e Teleoperation',
+          description: "A leader-follower teleoperation station for two Universal Robots UR7e arms, used to collect demonstrations, train policies, and run them on hardware.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/Bimanual_Teleop/";
+            },},{id: "projects-hill-climbing-quadruped",
           title: 'Hill Climbing Quadruped',
           description: "Can deep RL teach a quadrupedal robot how to climb steep cliffs?",
           section: "Projects",handler: () => {
