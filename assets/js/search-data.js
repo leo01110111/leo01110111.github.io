@@ -106,6 +106,11 @@ ninja.data = [{
           description: "GPT 6 Astra attempts DexVerse&#39;s long-horizon coffee making task. It can&#39;t zero-shot it; a harness must be made.",
           section: "Log",handler: () => {
               window.location.href = "/log/2026-10-23-210840/";
+            },},{id: "log-hand-tracking-and-voice-commands-for-collecting-bc-data-in-sim",
+          title: 'Hand Tracking and Voice Commands for Collecting BC Data in Sim',
+          description: "I tried a webcam hand tracker plus voice commands to teleoperate bimanual UR7e arms in sim. It was too hard, but it taught me why wrist cams matter so much.",
+          section: "Log",handler: () => {
+              window.location.href = "/log/2026-10-29-153935/";
             },},{id: "news-my-surf-project-on-teaching-quadrupeds-to-climb-steep-terrain-with-rl-was-featured-in-cmu-news-surf-project-scales-new-heights-in-rescue-robotics",
           title: 'My SURF project on teaching quadrupeds to climb steep terrain with RL was...',
           description: "",
