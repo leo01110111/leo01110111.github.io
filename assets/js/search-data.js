@@ -122,6 +122,11 @@ ninja.data = [{
           description: "A leader-follower teleoperation station for two Universal Robots UR7e arms, used to collect demonstrations, train policies, and run them on hardware.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/Bimanual_Teleop/";
+            },},{id: "projects-explainer-board",
+          title: 'Explainer Board',
+          description: "A narrated, live-animated math explainer you can interrupt with a spoken question. An AI agent answers by writing a new scene, and every interaction is logged as training data.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/Explainer_Board/";
             },},{id: "projects-five-posts",
           title: 'Five Posts',
           description: "A self-hosted app that turns my X feed into five posts a day. Claude filters out the junk, and I log which posts changed how I think.",
